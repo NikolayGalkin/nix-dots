@@ -27,6 +27,7 @@ in
 
     services = {
       jankyborders = enabled;
+      sketchybar = enabled;
     };
 
     tools.homebrew = enabled;
