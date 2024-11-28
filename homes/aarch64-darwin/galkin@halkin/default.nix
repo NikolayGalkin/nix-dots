@@ -15,10 +15,9 @@ in
 
     programs = {
       graphical = {
-        browsers = {
-          opera = disabled; # TODO: learn how to unzip dmg files. Look at `undmg`
-        };
         apps = {
+          aerospace = enabled;
+          jankyborders = enabled;
           zoom-us = enabled;
           signal = enabled;
           telegram = enabled;

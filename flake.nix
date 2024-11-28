@@ -17,14 +17,31 @@
     snowfall = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils-plus.follows = "flake-utils-plus";
     };
 
     catppuccin.url = "github:catppuccin/nix";
+
+    homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    homebrew.inputs.nix-darwin.follows = "darwin";
+    homebrew.inputs.nixpkgs.follows = "nixpkgs";
+    homebrew.inputs.flake-utils.follows = "flake-utils";
+
+    flake-utils-plus = {
+      url = "github:gytis-ivaskevicius/flake-utils-plus";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    flake-utils.url = "github:numtide/flake-utils";
+
+    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util.inputs.nixpkgs.follows = "nixpkgs";
+    mac-app-util.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = inputs:
     let
-      inherit (inputs) snowfall;
+      inherit (inputs) snowfall catppuccin mac-app-util;
 
       lib = snowfall.mkLib {
         inherit inputs;
@@ -45,15 +62,9 @@
         allowUnfree = true;
       };
 
-      overlays = [ ];
-
-      systems = {
-        darwin = [ ];
-        modules = [ ];
-      };
-
-      homes.modules = with inputs; [
+      homes.modules = [
         catppuccin.homeManagerModules.catppuccin
+        mac-app-util.homeManagerModules.default
       ];
 
     };

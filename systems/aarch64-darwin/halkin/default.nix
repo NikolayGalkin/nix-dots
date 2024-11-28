@@ -1,12 +1,12 @@
 { lib, namespace, ... }:
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace}) enabled disabled;
 in
 {
   system.stateVersion = 5;
 
   personal = {
-    documentation.enable = false;
+    documentation = disabled;
 
     user = {
       name = "galkin";
@@ -19,8 +19,20 @@ in
     };
 
     system = {
+      enable = true;
+      interface = enabled;
       fonts = enabled;
+      input = enabled;
     };
+
+    tools.homebrew = enabled;
+  };
+
+  homebrew = {
+    casks = [
+      "microsoft-office"
+      "clickup"
+    ];
   };
 
   nix.settings = {
