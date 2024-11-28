@@ -25,6 +25,10 @@ in
       input = enabled;
     };
 
+    services = {
+      jankyborders = enabled;
+    };
+
     tools.homebrew = enabled;
   };
 

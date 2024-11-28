@@ -17,7 +17,6 @@ in
       graphical = {
         apps = {
           aerospace = enabled;
-          jankyborders = enabled;
           zoom-us = enabled;
           signal = enabled;
           telegram = enabled;
