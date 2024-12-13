@@ -1,8 +1,13 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.sevices.sketchybar;
+  cfg = config.${namespace}.services.sketchybar;
 in
 {
   options.${namespace}.services.sketchybar = {

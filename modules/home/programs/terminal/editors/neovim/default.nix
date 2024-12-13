@@ -1,7 +1,15 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  system,
+  namespace,
+  inputs,
+  ...
+}:
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
+  inherit (inputs) gnvim;
   cfg = config.${namespace}.programs.terminal.editors.neovim;
 in
 {
@@ -10,30 +18,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-      withRuby = false;
-      defaultEditor = true;
-    };
+    home = {
+      packages = [
+        gnvim.packages.${system}.default
+      ];
 
-    home.packages = with pkgs; [
-      wget
-      nodejs_22
-      tree-sitter
-      lua51Packages.jsregexp
-      lua51Packages.lua
-      lua54Packages.luarocks
-    ];
+      shellAliases = {
+        v = "nvim";
+      };
 
-    home.shellAliases = {
-      v = "nvim";
-    };
-
-    home.sessionVariables = {
-      MANPAGER = "nvim +Man!";
+      sessionVariables = {
+        MANPAGER = "nvim +Man!";
+      };
     };
   };
 }

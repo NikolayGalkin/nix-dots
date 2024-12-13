@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, namespace
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
 }:
 let
   inherit (lib) types mkIf;
@@ -16,17 +17,10 @@ in
     fonts =
       with pkgs;
       mkOpt (listOf package) [
-        # Emojis
         noto-fonts-color-emoji
         twemoji-color-font
-
-        # Nerd Fonts
-        (nerdfonts.override {
-          fonts = [
-            "JetBrainsMono"
-            "NerdFontsSymbolsOnly"
-          ];
-        })
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.symbols-only
       ] "Custom font packages to install.";
     default = mkOpt types.str "JetBrainsMono Nerd Font" "Default font name";
   };

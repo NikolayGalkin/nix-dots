@@ -1,4 +1,9 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 let
   inherit (lib.${namespace}) mkBoolOpt;
   cfg = config.${namespace}.documentation;

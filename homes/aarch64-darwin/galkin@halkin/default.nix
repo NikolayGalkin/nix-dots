@@ -1,6 +1,6 @@
 { lib, namespace, ... }:
 let
-  inherit (lib.${namespace}) enabled disabled;
+  inherit (lib.${namespace}) enabled;
 in
 {
   home.stateVersion = "24.11";

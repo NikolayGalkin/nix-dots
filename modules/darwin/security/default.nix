@@ -1,7 +1,12 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 let
-  inherit (lib) types mkIf;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.security.pam;
 in

@@ -26,8 +26,9 @@ in
     };
 
     services = {
+      aerospace = disabled;
       jankyborders = enabled;
-      sketchybar = enabled;
+      sketchybar = disabled;
     };
 
     tools.homebrew = enabled;
@@ -36,12 +37,8 @@ in
   homebrew = {
     casks = [
       "microsoft-office"
+      "virtualbox"
       "clickup"
     ];
-  };
-
-  nix.settings = {
-    cores = 16;
-    max-jobs = 8;
   };
 }

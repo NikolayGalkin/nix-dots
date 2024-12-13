@@ -1,4 +1,10 @@
-{ config, pkgs, lib, namespace, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  namespace,
+  ...
+}:
 let
   inherit (lib) types;
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
@@ -14,7 +20,10 @@ in
     nix = {
       package = pkgs.nix;
       settings = {
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
       };
     };
   };

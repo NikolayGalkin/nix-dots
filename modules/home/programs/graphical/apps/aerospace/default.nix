@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 let
   inherit (lib) mkIf mkPackageOption;
   inherit (lib.${namespace}) mkBoolOpt enabled;
@@ -17,20 +23,22 @@ in
 
     home.file.".config/aerospace/aerospace.toml".text = config-file;
 
-    launchd = {
-      enable = true;
-    };
+    # TODO: Add launchd agent
 
-    launchd.agents.aerospace = {
-      enable = true;
-      config = {
-        Program = "${cfg.package}/Applications/AeroSpace.app/Contents/MacOS/AeroSpace";
-        ProgramArguments = [ "${cfg.package}/Applications/AeroSpace.app/Contents/MacOS/AeroSpace" ];
-        serviceConfig = {
-          KeepAlive = true;
-          RunAtLoad = true;
-        };
-      };
-    };
+    # launchd = {
+    #   enable = true;
+    # };
+    #
+    # launchd.agents.aerospace = {
+    #   enable = true;
+    #   config = {
+    #     # Program = "${cfg.package}/Applications/AeroSpace.app/Contents/MacOS/applet";
+    #     ProgramArguments = [ "${cfg.package}/Applications/AeroSpace.app/Contents/MacOS/AeroSpace" ];
+    #     serviceConfig = {
+    #       KeepAlive = true;
+    #       RunAtLoad = true;
+    #     };
+    #   };
+    # };
   };
 }

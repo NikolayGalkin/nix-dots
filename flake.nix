@@ -22,10 +22,19 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    homebrew.inputs.nix-darwin.follows = "darwin";
-    homebrew.inputs.nixpkgs.follows = "nixpkgs";
-    homebrew.inputs.flake-utils.follows = "flake-utils";
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nix-darwin.follows = "darwin";
+    };
+
+    homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+      inputs.nix-darwin.follows = "darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     flake-utils-plus = {
       url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -34,14 +43,36 @@
 
     flake-utils.url = "github:numtide/flake-utils";
 
-    mac-app-util.url = "github:hraban/mac-app-util";
-    mac-app-util.inputs.nixpkgs.follows = "nixpkgs";
-    mac-app-util.inputs.flake-utils.follows = "flake-utils";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    nuschtosSearch = {
+      url = "github:NuschtOS/search";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    gnvim = {
+      url = "github:NikolayGalkin/gnvim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        snowfall-lib.follows = "snowfall";
+      };
+    };
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
-      inherit (inputs) snowfall catppuccin mac-app-util;
+      inherit (inputs)
+        snowfall
+        catppuccin
+        mac-app-util
+        nix-homebrew
+        ;
 
       lib = snowfall.mkLib {
         inherit inputs;
@@ -62,10 +93,13 @@
         allowUnfree = true;
       };
 
+      system.modules.darwin = [
+        nix-homebrew.darwinModules.nix-homebrew
+      ];
+
       homes.modules = [
         catppuccin.homeManagerModules.catppuccin
         mac-app-util.homeManagerModules.default
       ];
-
     };
 }

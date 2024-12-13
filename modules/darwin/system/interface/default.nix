@@ -1,6 +1,12 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 let
-  inherit (lib) mkIf mkMerge mkEnableOption;
+  inherit (lib) mkIf mkEnableOption;
 
   cfg = config.${namespace}.system.interface;
 in
