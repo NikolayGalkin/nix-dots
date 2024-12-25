@@ -20,6 +20,12 @@
       inputs.flake-utils-plus.follows = "flake-utils-plus";
     };
 
+    snowfall-flake = {
+      url = "github:snowfallorg/flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.snowfall-lib.follows = "snowfall";
+    };
+
     catppuccin.url = "github:catppuccin/nix";
 
     nix-homebrew = {

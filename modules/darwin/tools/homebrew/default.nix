@@ -29,6 +29,10 @@ in
         brewfile = true;
         lockfiles = true;
       };
+
+      masApps = {
+        Hush = 1544743900;
+      };
     };
   };
 }

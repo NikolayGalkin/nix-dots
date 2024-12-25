@@ -13,6 +13,8 @@ in
       full-name = "Mykola Halkin";
     };
 
+    theme = enabled;
+
     programs = {
       graphical = {
         apps = {

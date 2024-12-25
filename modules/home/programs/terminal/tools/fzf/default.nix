@@ -19,7 +19,6 @@ in
   config = mkIf cfg.enable {
     programs.fzf = {
       enable = true;
-      catppuccin.enable = true;
       enableZshIntegration = false;
 
       defaultCommand = "${lib.getExe pkgs.fd} --type=f --hidden --exclude=.git";

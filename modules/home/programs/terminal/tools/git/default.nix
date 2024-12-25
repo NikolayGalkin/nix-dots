@@ -45,7 +45,6 @@ in
 
       delta = {
         enable = true;
-        catppuccin.enable = true;
         options = {
           line-numbers = true;
           navigate = true;

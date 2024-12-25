@@ -18,7 +18,6 @@ in
   config = mkIf cfg.enable {
     programs.lazygit = {
       enable = true;
-      catppuccin.enable = true;
     };
 
     home.shellAliases = {

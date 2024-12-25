@@ -19,7 +19,24 @@ in
     programs.yazi = {
       enable = true;
       enableZshIntegration = true;
-      catppuccin.enable = true;
+
+      settings = {
+        manager = {
+          ratio = [
+            2
+            3
+            3
+          ];
+          sort_by = "natural";
+          sort_dir_first = true;
+          show_hidden = true;
+          show_symlink = true;
+        };
+      };
+    };
+
+    home.shellAliases = {
+      y = "yazi";
     };
   };
 }

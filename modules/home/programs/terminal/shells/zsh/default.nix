@@ -24,7 +24,6 @@ in
 
       syntaxHighlighting = {
         enable = true;
-        catppuccin.enable = true;
       };
 
       plugins = [

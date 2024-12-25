@@ -6,7 +6,6 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  # inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.starship;
 in
@@ -19,7 +18,6 @@ in
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
-      catppuccin.enable = true;
       settings = {
         add_newline = false;
         format = "$directory$character";
